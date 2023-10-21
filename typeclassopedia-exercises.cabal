@@ -25,6 +25,7 @@ source-repository head
 
 library
   exposed-modules:
+      Functors
       Lib
   other-modules:
       Paths_typeclassopedia_exercises
@@ -35,6 +36,7 @@ library
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
       base >=4.7 && <5
+    , hspec
   default-language: Haskell2010
 
 executable typeclassopedia-exercises-exe
@@ -48,6 +50,7 @@ executable typeclassopedia-exercises-exe
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
+    , hspec
     , typeclassopedia-exercises
   default-language: Haskell2010
 
@@ -55,6 +58,7 @@ test-suite typeclassopedia-exercises-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      FunctorSpec
       Paths_typeclassopedia_exercises
   autogen-modules:
       Paths_typeclassopedia_exercises
@@ -63,5 +67,6 @@ test-suite typeclassopedia-exercises-test
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
+    , hspec
     , typeclassopedia-exercises
   default-language: Haskell2010

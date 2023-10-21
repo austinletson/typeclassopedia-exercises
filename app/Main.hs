@@ -1,6 +1,6 @@
 module Main (main) where
 
-import Lib
+import Functors
 
 main :: IO ()
-main = someFunc
+main = testFunctorsModule
