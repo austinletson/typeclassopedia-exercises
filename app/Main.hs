@@ -1,6 +1,6 @@
 module Main (main) where
 
-import Functors
+import MyFunctors
 
 main :: IO ()
-main = testFunctorsModule
+main = putStrLn "Reached Main Module"
