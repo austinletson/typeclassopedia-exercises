@@ -25,8 +25,8 @@ source-repository head
 
 library
   exposed-modules:
-      Functors
       Lib
+      MyFunctors
   other-modules:
       Paths_typeclassopedia_exercises
   autogen-modules:
