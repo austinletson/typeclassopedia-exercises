@@ -1,0 +1,4 @@
+-- Intuition 
+-- A monad is able to use the output from a previous computations to decide what computations to run next (this is what differentiates Monads from Applicatives)
+-- The structure of a Monad computation can change based on previous results, where the structure of an Applicative is fixed
+-- A parser based on a Monad can describe a context sensitive grammar

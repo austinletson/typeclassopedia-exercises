@@ -20,15 +20,14 @@ instance MyFunctor ((->) e) where
   fmap' g h = g . h
 
 instance MyFunctor ((,) e) where
-  fmap' g ((,) e a) = (,) e (g a)
+  fmap' g (e, a) = (e, g a)
+
+--   fmap' g ((,) e a) = (,) e (g a)
 
 data Pair a = Pair a a
 
 instance MyFunctor Pair where
   fmap' g (Pair a b) = Pair (g a) (g b)
-
-data MyMaybe a = MyJust a | MyNothing
-  deriving (Eq, Ord)
 
 data ITree a = Leaf (Int -> a) | Node [ITree a]
 
@@ -50,21 +49,6 @@ instance (MyFunctor f1, MyFunctor f2) => MyFunctor (MyCompose' f1 f2) where
 
 newtype MyReader e a = MyReaderArrow ((->) e a)
 
-instance MyFunctor (MyReader e) where
-  -- fmap' :: (d -> c) -> MyReader e d -> MyReader e c
-  -- fmap' :: (d -> c) -> (e -> d) -> (e -> c)
-  -- d :: a
-  -- c :: a
-  -- g :: (d -> c)
-  -- h :: (e -> d)
-  -- return :: (e -> c)
-  fmap' g (MyReaderArrow h) = MyReaderArrow (g . h)
-
-data MyAnnotation e a = MyAnnotationComma e a
-
-instance MyFunctor (MyAnnotation e) where
-  fmap' g (MyAnnotationComma e a) = MyAnnotationComma e (g a)
-
 -- Type that of kind (* -> *) that cannot be made an instance of MyFunctor
 data T a = T (a -> Char)
 
@@ -84,6 +68,12 @@ instance (Eq a) => Eq (BogusPair a) where
 instance MyFunctor BogusPair where
   -- fmap' :: (c -> d) -> Pair c -> Pair d
   fmap' g (BogusPair a1 a2) = BogusPair (g a1) (g a2)
+
+class BogusFunctor f where
+  fmap'' :: (a -> b) -> (f a -> f b)
+
+instance BogusFunctor [] where
+  fmap'' _ _ = []
 
 bogusPair1 :: BogusPair Int
 bogusPair1 = BogusPair 1 1
